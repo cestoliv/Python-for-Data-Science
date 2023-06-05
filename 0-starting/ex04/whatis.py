@@ -10,8 +10,12 @@ def is_int(s):
 if len(sys.argv) < 2:
     exit(0)
 
-assert len(sys.argv) <= 2, "more than one argument are provided"
-assert is_int(sys.argv[1]), "argument is not an integer"
+if len(sys.argv) > 2:
+    print("AssertionError: more than one argument are provided")
+    exit(0)
+if not is_int(sys.argv[1]):
+    print("AssertionError: argument is not an integer")
+    exit(0)
 
 if int(sys.argv[1]) % 2 == 0:
     print("I'm Even.")

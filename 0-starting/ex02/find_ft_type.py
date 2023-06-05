@@ -11,5 +11,4 @@ def all_thing_is_obj(object: any) -> int:
         print(object, ':', type(object))
     else:
         print('Type not found')
-    print(isinstance(object, object))
     return 42
