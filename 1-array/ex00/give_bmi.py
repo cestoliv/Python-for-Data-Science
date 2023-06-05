@@ -4,6 +4,9 @@ def give_bmi(height: list[int | float], weight: list[int | float]) -> list[int |
     """
         Return an array of each BMI for each couple of height:weight
     """
+    if type(height) != list or type(weight) != list:
+        raise ValueError('Height and weight must be lists')
+
     height = np.asarray(height)
     weight = np.asarray(weight)
 
