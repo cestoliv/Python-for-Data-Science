@@ -14,7 +14,7 @@ def rotate(array):
     """
         Rotate an array
     """
-    return list(list(x) for x in zip(*array))[::-1]
+    return np.asarray(list(list(x) for x in zip(*array))[::-1])
 
 
 def main():
