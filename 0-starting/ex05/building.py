@@ -13,7 +13,8 @@ def main():
     elif len(sys.argv) == 2:
         message = sys.argv[1]
     else:
-        message = input("What is the text to count?\n")
+        print("What is the text to count?")
+        message = sys.stdin.readline()
 
     spaces = [' ', '\n']
 
