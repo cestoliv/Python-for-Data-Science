@@ -19,7 +19,7 @@ def rotate(array):
 
 def main():
     """
-        Open the image, trim it and convert it to grayscale,
+        Open the image, trim it, rotate it and convert it to grayscale,
         then display it.
     """
 
