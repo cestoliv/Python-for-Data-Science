@@ -1,26 +1,36 @@
-import pandas as pd
+from load_csv import load
 import matplotlib.pyplot as plt
 
-# Load the CSV files
-income_data = pd.read_csv('income_per_person_gdppercapita_ppp_inflation_adjusted.csv')
-life_expectancy_data = pd.read_csv('life_expectancy_years.csv')
 
-# Extract the relevant columns
-YEAR = '1900'
-income_values = income_data[YEAR]
-life_expectancy_values = life_expectancy_data[YEAR]
+def main():
+    """
+        Plot the relation between incomes and life expectancy
+    """
+    incomf = 'income_per_person_gdppercapita_ppp_inflation_adjusted.csv'
 
-# Create a scatter plot
-plt.scatter(income_values, life_expectancy_values)
+    try:
+        income_data = load(incomf)  # using a var to bypass flake8
+        life_expectancy_data = load('life_expectancy_years.csv')
+    except Exception as e:
+        print(e)
+        exit(0)
 
-# Set the labels and title
-plt.xlabel('Gross domestic product')
-plt.ylabel('Life expectancy')
-plt.title(YEAR)
+    # Extract the relevant columns
+    YEAR = '1900'
+    income_values = income_data[YEAR]
+    life_expectancy_values = life_expectancy_data[YEAR]
 
-# 0-1000 take 1/3 of the graph, 1000-10000 take 2/3 of the graph
-plt.xscale('log')
-plt.xticks([300, 1000, 10000], ['300', '1k', '10k'])
+    plt.scatter(income_values, life_expectancy_values)
 
-# Show the plot
-plt.show()
+    plt.xlabel('Gross domestic product')
+    plt.ylabel('Life expectancy')
+    plt.title(YEAR)
+
+    plt.xscale('log')
+    plt.xticks([300, 1000, 10000], ['300', '1k', '10k'])
+
+    plt.show()
+
+
+if __name__ == '__main__':
+    main()
