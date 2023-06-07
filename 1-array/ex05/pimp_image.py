@@ -53,6 +53,19 @@ def ft_blue(array) -> np.ndarray:
     return blue
 
 
+def add(a, b):
+    """
+        Add two numbers using bitwise operators
+    """
+    a = int(a)
+    b = int(b)
+    while (b != 0):
+        carry = a & b
+        a = a ^ b
+        b = carry << 1
+    return a
+
+
 def ft_grey(array) -> np.ndarray:
     """
         Take an image array, and return a new array
@@ -63,10 +76,11 @@ def ft_grey(array) -> np.ndarray:
         for j in range(len(grey[i])):
             val = 0
             if (grey[i][j][2] > 0):
-                val += 0.2989 / (1 / grey[i][j][2])
+                val = add(val, 0.2989 / (1 / grey[i][j][2]))
             if (grey[i][j][1] > 0):
-                val += 0.5870 / (1 / grey[i][j][1])
+                val = add(val, 0.5870 / (1 / grey[i][j][1]))
             if (grey[i][j][0] > 0):
-                val += 0.1140 / (1 / grey[i][j][0])
+                val = add(val, 0.1140 / (1 / grey[i][j][0]))
             grey[i][j][0] = grey[i][j][1] = grey[i][j][2] = val
+
     return grey
