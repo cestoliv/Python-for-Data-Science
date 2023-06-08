@@ -20,9 +20,6 @@ class Character(ABC):
 
 class Stark(Character):
     """A Stark that inherit from a Character"""
-    def __init__(self, first_name: str, is_alive=True):
-        """Init a Stark"""
-        super().__init__(first_name, is_alive)
 
     def die(self):
         """The Stark die"""
