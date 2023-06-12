@@ -6,6 +6,19 @@ def mean(array):
     return sum(array) / len(array)
 
 
+def nearest(array, value):
+    # value = round(value)
+    near = array[0]
+    near_r = -1
+
+    for x in array:
+        r = abs(x - value)
+        if near_r == -1 or (r < near_r or (r == near_r and near >= x)):
+            near = x
+            near_r = r
+    return near
+
+
 def median(array) -> float:
     sort = sorted(array)
     middle = (len(sort) - 1) // 2
@@ -15,27 +28,15 @@ def median(array) -> float:
         return float(sort[middle])
 
 
-# def percentile(array, percent):
-#     sort = sorted(array)
-#     qi = (len(sort) + 1) * percent
-#     qi_ceil = roundup(qi)
-#     qi_floor = qi_ceil - 1
-
-#     if qi_ceil == qi_floor:
-#         q = sort[qi_floor]
-#     else:
-#         q = sort[qi_floor] + 0.25 * (sort[qi_ceil] - sort[qi_floor])
-#     return q
-
-
 def quartile(array):
     sort = sorted(array)
-    q1i = int(round(25/100 * len(sort) + 0.5))
-    q1 = sort[q1i-1]
-    q3i = int(round(75/100 * len(sort) + 0.5))
-    q3 = sort[q3i-1]
 
-    return [q1, q3]
+    middle = int(len(sort)//2)
+    # if len(sort) % 2 %
+    q1 = median(sort[:middle])
+    q3 = median(sort[middle:])
+    # print(q1, q3)
+    return [nearest(sort, q1), nearest(sort, q3)]
 
 
 def sqrt(num):
